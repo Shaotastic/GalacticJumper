@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1973621880969180349}
   - component: {fileID: 1718997119819135747}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8671340307650073473}
   m_Layer: 0
   m_Name: E-Arth
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8660497185419245894}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -500, y: -500, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -191,9 +191,9 @@ MonoBehaviour:
   m_RotationSpeed: 10
   m_Visited: 0
   m_GasPlanet: 0
-  m_Renderer: {fileID: 0}
-  m_Atmosphere: {fileID: 0}
-  m_Explosion: {fileID: 0}
+  m_Renderer: {fileID: 2266716119734695843}
+  m_Atmosphere: {fileID: 682176320848046823}
+  m_Explosion: {fileID: 321893853128597565}
   m_Player: {fileID: 0}
   m_ShatterPlanet: {fileID: 99376198378141129}
   m_HasExploded: 0
@@ -304,6 +304,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 321893855217148070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &321893853128597565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2089140379, guid: 9473bf090aaa04164967cdceab413088,
+    type: 3}
+  m_PrefabInstance: {fileID: 321893855217148070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca71e8557cdb6b4b93cae99f1bf2942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6885755292633593356
 PrefabInstance:
   m_ObjectHideFlags: 0

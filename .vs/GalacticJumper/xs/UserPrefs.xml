@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{AA26465F-7C7A-FC27-7FB0-570D27E4A714}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Scripts/Player.cs">
+    <Files>
+      <File FileName="Assets/_Scripts/Planet.cs" Line="4" Column="18" />
+      <File FileName="Assets/_Scripts/GeneratePlanet.cs" Line="146" Column="18" />
+      <File FileName="Assets/_Scripts/Aaron's Scripts/Tools/ObjectPoolManager.cs" Line="21" Column="16" />
+      <File FileName="Assets/_Scripts/Player.cs" Line="179" Column="17" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GalacticJumper" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="_Scripts" expanded="True">
+                <Node name="Aaron's Scripts" expanded="True">
+                  <Node name="Tools" expanded="True" />
+                </Node>
+                <Node name="Player.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b0362d42-65ac-438e-8be4-6b1f5a814759" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

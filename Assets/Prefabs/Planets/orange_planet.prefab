@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4125743577165441929
 Transform:
   m_ObjectHideFlags: 0
@@ -217,12 +217,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4128c26bfaa2f124a995a1e903e9fea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RandomAngle: 72
   m_RotationSpeed: 10
-  m_Selected: 0
   m_Visited: 0
   m_GasPlanet: 1
-  woahduude: 0
+  m_Renderer: {fileID: 0}
+  m_Atmosphere: {fileID: 0}
+  m_Explosion: {fileID: 0}
+  m_Player: {fileID: 0}
+  m_ShatterPlanet: {fileID: 0}
+  m_HasExploded: 0
+  m_LerpTimer: 0
+  m_Crack: 1
+  m_Material: {fileID: 0}
 --- !u!135 &3533532590959398019
 SphereCollider:
   m_ObjectHideFlags: 0
