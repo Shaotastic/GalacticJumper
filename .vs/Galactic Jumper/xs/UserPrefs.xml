@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{888DDF33-4321-B76E-FC4A-E7D4CCCC341F}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Scripts/ShatterShip.cs">
+    <Files>
+      <File FileName="Assets/_Scripts/Managers/GameManager.cs" Line="165" Column="17" />
+      <File FileName="Assets/_Scripts/Player.cs" Line="144" Column="27" />
+      <File FileName="Assets/_Scripts/Planet.cs" Line="58" Column="1" />
+      <File FileName="Assets/_Scripts/ExplosionAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Scripts/ShatterShip.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Galactic Jumper" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="_Scripts" expanded="True">
+                <Node name="Managers" expanded="True" />
+                <Node name="ShatterShip.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="74de1082-d2fd-45f0-ba83-16dca2683e18" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
