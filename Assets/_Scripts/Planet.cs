@@ -17,7 +17,6 @@ public class Planet : MonoBehaviour
 
     [SerializeField] float m_LerpTimer = 0;
     [SerializeField] float m_Crack = 1;
-    //MaterialPropertyBlock m_Material;
     [SerializeField] Material m_Material;
     private Vector3 m_ResetPosition = new Vector3(-500, -500);
     private bool m_OffScreen;
@@ -28,8 +27,6 @@ public class Planet : MonoBehaviour
     {
         m_Renderer = GetComponent<Renderer>();
         m_Material = m_Renderer.material;
-        //m_Material = new MaterialPropertyBlock();
-        //m_Renderer.GetPropertyBlock(m_Material);
 
         if (!m_Atmosphere)
             m_Atmosphere = transform.GetChild(1).gameObject;
@@ -63,7 +60,6 @@ public class Planet : MonoBehaviour
     {
         transform.RotateAround(transform.position, m_RotationDirection, Time.fixedDeltaTime * m_RotationSpeed);
 
-
         if (!GameManager.Instance.m_IsPlaying || GameManager.Instance.m_Pause)
             return;
 
@@ -86,16 +82,12 @@ public class Planet : MonoBehaviour
                 SoundManager.Instance.PlayPlanetExplosion();
             }
         }
-
-
-
     }
 
     void UpdateMaterial()
     {
         m_Material.SetColor("MainColor", Color.Lerp(Color.white, Color.black, m_LerpTimer));
         m_Material.SetFloat("_CrackAlpha", m_Crack);
-        //m_Renderer.SetPropertyBlock(m_Material);
     }
 
     void ResetMaterial()
@@ -103,7 +95,6 @@ public class Planet : MonoBehaviour
         m_Crack = 1;
         m_Material.SetColor("MainColor", Color.white);
         m_Material.SetFloat("_CrackAlpha", m_Crack);
-        //m_Renderer.SetPropertyBlock(m_Material);
     }
 
     public void Reset()
@@ -135,7 +126,6 @@ public class Planet : MonoBehaviour
         if (other.tag == "Player")
         {
             m_Player = null;
-            //m_Visited = false;
         }
     }
 
@@ -167,7 +157,6 @@ public class Planet : MonoBehaviour
     {
         get => m_Visited;
     }
-
 
     public void SetOffScreen()
     {
