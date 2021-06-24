@@ -4670,7 +4670,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -52.5}
+  m_AnchoredPosition: {x: 0, y: -52.499878}
   m_SizeDelta: {x: 0, y: -605.0002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803552189
@@ -7680,7 +7680,19 @@ MonoBehaviour:
     m_List: []
     m_Planet: {fileID: 0}
     m_Index: 0
-  - m_GameObject: {fileID: 636331576106045927, guid: 264b1546329ab054aadc28dd1fb34312,
+  - m_GameObject: {fileID: 6965215727718917282, guid: c6a76a0ab06704de98ec222d3161cef4,
+      type: 3}
+    m_Amount: 3
+    m_List: []
+    m_Planet: {fileID: 0}
+    m_Index: 0
+  - m_GameObject: {fileID: 8468528553308740722, guid: 274a3c43b340448b4b506c55d3683389,
+      type: 3}
+    m_Amount: 3
+    m_List: []
+    m_Planet: {fileID: 0}
+    m_Index: 0
+  - m_GameObject: {fileID: 1608407645781567440, guid: 9f0dbe008c08b44c99a38d8adc346811,
       type: 3}
     m_Amount: 3
     m_List: []
@@ -13884,7 +13896,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 205687023000764497}
   m_HandleRect: {fileID: 205687023000764496}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
