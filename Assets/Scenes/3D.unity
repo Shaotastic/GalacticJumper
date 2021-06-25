@@ -4670,7 +4670,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -52.499878}
+  m_AnchoredPosition: {x: 0, y: -52.499756}
   m_SizeDelta: {x: 0, y: -605.0002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803552189
@@ -11763,7 +11763,7 @@ MonoBehaviour:
   m_GameStarted: 0
   m_ExtraLife: 0
   m_Pause: 0
-  m_PlanetDecaySpeed: 7.1
+  m_PlanetDecaySpeed: 6.2
   m_IsPlaying: 0
   m_CurrentDecaySpeed: 0
 --- !u!4 &1927035174
@@ -13896,7 +13896,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 205687023000764497}
   m_HandleRect: {fileID: 205687023000764496}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

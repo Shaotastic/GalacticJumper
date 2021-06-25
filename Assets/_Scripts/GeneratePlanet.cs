@@ -16,6 +16,8 @@ public class GeneratePlanet : MonoBehaviour
     public bool m_ActivateWindow;
 
     Vector3 playerVector;
+
+    int previousIndex = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +67,16 @@ public class GeneratePlanet : MonoBehaviour
 
     Planet RequestPlanetFromPool()
     {
-        return m_PoolManager.GetPlanetFromPool(Random.Range(0, m_PoolManager.GetPoolObjectCount));
+        int randomIndex = Random.Range(0, m_PoolManager.GetPoolObjectCount);
+
+        while (randomIndex == previousIndex)
+        {
+            randomIndex = Random.Range(0, m_PoolManager.GetPoolObjectCount);
+        }
+
+        previousIndex = randomIndex;
+
+        return m_PoolManager.GetPlanetFromPool(randomIndex);
     }
 
     void UpdateMap()

@@ -81,18 +81,21 @@ public class GameManager : MonoBehaviour
         {
             case 10:
                 SetMultiplierDecay(0.9f);
-                break;
+                return;
             case 20:
                 SetMultiplierDecay(0.8f);
-                break;
+                return;
             case 40:
                 SetMultiplierDecay(0.7f);
-                break;
+                return;
             case 80:
                 SetMultiplierDecay(0.65f);
-                break;
+                return;
+            case 100:
+                SetMultiplierDecay(0.5f);
+                return;
             default:
-                break;
+                return;
         }
     }
 
