@@ -260,8 +260,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: Assets/_KeyStore/GalacticJumper.keystore'
-  AndroidKeyaliasName: aaron
+  AndroidKeystoreName: '{inproject}: Assets/Other/_KeyStore/GalacticJumperAndroid.keystore'
+  AndroidKeyaliasName: galacticjumperkey
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

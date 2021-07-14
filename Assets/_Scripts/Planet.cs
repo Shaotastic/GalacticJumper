@@ -12,6 +12,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private ExplosionAnimation m_Explosion;
     [SerializeField] private Player m_Player;
     [SerializeField] ShatterPlanet m_ShatterPlanet;
+    [SerializeField] Collider m_Collider;
 
     [SerializeField] private bool m_HasExploded;
 
@@ -33,6 +34,8 @@ public class Planet : MonoBehaviour
 
         if (!m_Explosion)
             m_Explosion = transform.GetChild(0).GetComponent<ExplosionAnimation>();
+
+        m_Collider = GetComponent<Collider>();
 
         m_Explosion.gameObject.SetActive(false);
         transform.position = m_ResetPosition;
@@ -161,6 +164,22 @@ public class Planet : MonoBehaviour
     public void SetOffScreen()
     {
         m_OffScreen = true;
+    }
+
+    public bool RemovePlayer()
+    {
+        if(m_Player != null)
+        {
+            m_Player = null;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void SetScale(float percentage = 1)
+    {
+
     }
 }
 

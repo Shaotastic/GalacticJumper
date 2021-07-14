@@ -76,6 +76,8 @@ public class GeneratePlanet : MonoBehaviour
 
         previousIndex = randomIndex;
 
+        Planet temp = m_PoolManager.GetPlanetFromPool(randomIndex);
+
         return m_PoolManager.GetPlanetFromPool(randomIndex);
     }
 

@@ -1,2 +1,9 @@
 Base path: '/Applications/Unity/2019.4.15f1/Unity.app/Contents', plugins path '/Applications/Unity/2019.4.15f1/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileSnippet
+  api=14 type=1 insize=13363 outsize=3673 kw=_ADDITIONAL_LIGHTS_VERTEX pd=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_CUBEMAP_ARRAY UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHTMAP_DLDR_ENCODING ok=1
+Cmd: compileSnippet
+  api=14 type=0 insize=8250 outsize=1933 kw= pd=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_CUBEMAP_ARRAY UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHTMAP_DLDR_ENCODING ok=1
+Unhandled exception: Protocol error - unexpected end of data (did the Editor crash?)
+
+Quitting shader compiler process

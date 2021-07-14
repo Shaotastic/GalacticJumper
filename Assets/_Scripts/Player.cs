@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +12,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool m_AutoMode;
 
-    public Transform m_SelectedPlanet, m_PreviousPlanet;
+    public Planet m_SelectedPlanet;
+    public Transform m_PreviousPlanet;
     public float speed = 100;
     public float maxSpeed = 1;
     public float fireSpeed;
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
     PlayerSound m_Sound;
     ExplosionAnimation m_ExplosionAni;
 
+    //[SerializeField] Planet m_CurrentPlanet;
+    [SerializeField] bool canFire;
 
     // Use this for initialization
     void OnEnable()
@@ -151,7 +155,9 @@ public class Player : MonoBehaviour
     {
         if (!playerStart)
             playerStart = true;
-        m_SelectedPlanet = null;
+
+        RemoveSelectedPlanet();
+
         rigid.velocity *= fireSpeed;
 
         if (canFire)
@@ -160,6 +166,13 @@ public class Player : MonoBehaviour
         canFire = false;
         m_CircularSmoke.transform.position = m_CirculatSmokePosition.position;
         m_CircularSmoke.GetPooledObject().SetActive(true);
+    }
+
+    private void RemoveSelectedPlanet()
+    {
+        m_PreviousPlanet = m_SelectedPlanet.transform;
+        m_SelectedPlanet.RemovePlayer();
+        m_SelectedPlanet = null;
     }
 
     bool enablePlanetAngleGizmo;
@@ -174,17 +187,9 @@ public class Player : MonoBehaviour
 
                 prevVelocity = rigid.velocity;
 
+                SetNewPlanet(col);
+
                 CalculatePlanetAngles(col.transform);
-
-                Planet temp = col.GetComponent<Planet>();
-
-                if (!temp.WasVisited && playerStart)
-                {
-                    temp.Visited(this);
-                    m_Sound.PlayLandSound();
-                    GameManager.Instance.AddScore();
-                    //enablePlanetAngleGizmo = true;
-                }
 
                 canFire = true;
 
@@ -196,18 +201,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void SetNewPlanet(Collider col)
+    {
+        m_SelectedPlanet = col.GetComponent<Planet>();
+
+        if (!m_SelectedPlanet.WasVisited && playerStart)
+        {
+            m_SelectedPlanet.Visited(this);
+            m_Sound.PlayLandSound();
+            GameManager.Instance.AddScore();
+        }
+    }
+
     void OnTriggerExit(Collider col)
     {
         enablePlanetAngleGizmo = false;
         m_EnableTimeScore = false;
-        if (col.tag == "Planet")
-            m_PreviousPlanet = col.transform;
         canFire = false;
     }
 
     public Transform GetObject()
     {
-        return m_SelectedPlanet;
+        if (m_SelectedPlanet)
+            return m_SelectedPlanet.transform;
+        return null;
     }
 
     void OnDrawGizmos()
@@ -228,17 +245,15 @@ public class Player : MonoBehaviour
                 {
                     Gizmos.color = Color.green;
                     //Debug.Log(obj.position);
-                    Gizmos.DrawLine(m_SelectedPlanet.position, m_DebugPlanetVector);
+                    Gizmos.DrawLine(m_SelectedPlanet.transform.position, m_DebugPlanetVector);
                     Gizmos.color = Color.blue;
-                    Gizmos.DrawLine(m_SelectedPlanet.position, (m_SelectedPlanet.position + huh));
+                    Gizmos.DrawLine(m_SelectedPlanet.transform.position, (m_SelectedPlanet.transform.position + huh));
                     Gizmos.color = Color.cyan;
-                    Gizmos.DrawLine(m_SelectedPlanet.position, (m_SelectedPlanet.position + cross));
+                    Gizmos.DrawLine(m_SelectedPlanet.transform.position, (m_SelectedPlanet.transform.position + cross));
                 }
             }
         }
     }
-
-    [SerializeField] bool canFire;
 
     void AutoMode()
     {
@@ -278,7 +293,6 @@ public class Player : MonoBehaviour
         m_MeshRenderer.SetActive(true);
         m_PreviousPlanet = null;
         playerStart = false;
-        //m_Fuel = 100;
         m_AutoMode = false;
         m_TimeScore = 0;
     }
@@ -309,9 +323,7 @@ public class Player : MonoBehaviour
             prevHalf = m_PreviousPlanet.position;
         }
 
-        m_SelectedPlanet = newPlanet.transform;
-
-        newHalf = m_SelectedPlanet.position;
+        newHalf = m_SelectedPlanet.transform.position;
         //Vector3 newVelocity 
         rigid.AddForce(prevVelocity * speed, ForceMode.Force);
 

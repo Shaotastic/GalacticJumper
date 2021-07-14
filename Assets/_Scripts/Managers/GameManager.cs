@@ -38,10 +38,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float m_PlanetDecaySpeed = 5;
     private float m_SpeedMultiplier = 1;
     private float m_DecaySpeedMultiplier = 1;
+    private float m_AtmosphereMultiplier = 1;
 
     public bool m_IsPlaying = false;
 
     [SerializeField] private float m_CurrentDecaySpeed;
+    [SerializeField] private float m_CurrentAtmosphereSize = 1;
 
     private void Awake()
     {
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
         m_ExtraLife = false;
         ResetScore();
         OnReset();
+        m_AtmosphereMultiplier = 1;
         //player.Reset();
     }
 
@@ -244,5 +247,10 @@ public class GameManager : MonoBehaviour
     {
         m_DecaySpeedMultiplier = mul;
         SetDecaySpeed(m_PlanetDecaySpeed * m_DecaySpeedMultiplier);
+    }
+
+    private void SetAtmosphereSize(float percentage)
+    {
+        m_AtmosphereMultiplier = percentage;        
     }
 }
