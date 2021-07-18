@@ -104,10 +104,13 @@ MonoBehaviour:
   m_Explosion: {fileID: 5572599334919743835}
   m_Player: {fileID: 0}
   m_ShatterPlanet: {fileID: 5572599334171362431}
+  m_Collider: {fileID: 0}
   m_HasExploded: 0
   m_LerpTimer: 0
   m_Crack: 1
   m_Material: {fileID: 2100000, guid: b887d37a9b355457591e887a6368d570, type: 2}
+  m_OgAtmosphereSize: {x: 0, y: 0, z: 0}
+  m_SizePertcentage: 1
 --- !u!135 &9016400311022224443
 SphereCollider:
   m_ObjectHideFlags: 0

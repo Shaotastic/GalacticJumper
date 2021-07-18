@@ -47,17 +47,13 @@ public class GeneratePlanet : MonoBehaviour
 
     void Update()
     {
-        switch (GameManager.Instance.m_Pause)
-        {
-            case false:
-                if (GameManager.Instance.m_IsPlaying)
-                {
-                    UpdateMap();
-                }
-                break;
-            case true:
-                break;
-        }
+        if (GameManager.Instance.m_Pause)
+            return;
+
+        if (GameManager.Instance.m_IsPlaying)
+            UpdateMap();
+        
+
     }
 
     void RequestPlanet()
@@ -76,8 +72,6 @@ public class GeneratePlanet : MonoBehaviour
 
         previousIndex = randomIndex;
 
-        Planet temp = m_PoolManager.GetPlanetFromPool(randomIndex);
-
         return m_PoolManager.GetPlanetFromPool(randomIndex);
     }
 
@@ -93,7 +87,7 @@ public class GeneratePlanet : MonoBehaviour
 
                 m_PlanetPool.Remove(planet);
                 Planet temp = RequestPlanetFromPool();
-
+                temp.InitializeObject();
                 temp.transform.position = new Vector3(Random.Range(m_Left, m_Right), Random.Range(m_Min, m_Max) + m_HighestPosition, 0);
                 m_PlanetPool.Add(temp);
 

@@ -12,7 +12,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private ExplosionAnimation m_Explosion;
     [SerializeField] private Player m_Player;
     [SerializeField] ShatterPlanet m_ShatterPlanet;
-    [SerializeField] Collider m_Collider;
+    [SerializeField] SphereCollider m_Collider;
 
     [SerializeField] private bool m_HasExploded;
 
@@ -24,18 +24,28 @@ public class Planet : MonoBehaviour
 
     private Sequence m_Sequence;
 
+    [SerializeField] private Vector3 m_OgAtmosphereSize;
+    private float m_OgColliderSize;
+
+    [SerializeField] float m_SizePertcentage = 1;
+
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
         m_Material = m_Renderer.material;
 
-        if (!m_Atmosphere)
+        if (!m_Atmosphere)        
             m_Atmosphere = transform.GetChild(1).gameObject;
+        
 
         if (!m_Explosion)
             m_Explosion = transform.GetChild(0).GetComponent<ExplosionAnimation>();
 
-        m_Collider = GetComponent<Collider>();
+        m_Collider = GetComponent<SphereCollider>();
+
+        m_OgAtmosphereSize = m_Atmosphere.transform.localScale;
+
+        m_OgColliderSize = m_Collider.radius;
 
         m_Explosion.gameObject.SetActive(false);
         transform.position = m_ResetPosition;
@@ -49,10 +59,14 @@ public class Planet : MonoBehaviour
     {
         m_RotationDirection = new Vector3(Random.Range(-4, 4), Random.Range(-4, 4), Random.Range(-4, 4));
         m_Visited = false;
+        m_SizePertcentage = GameManager.Instance.AtmosspherePercent;
+        SetScale(m_SizePertcentage);
     }
 
     private void Update()
     {
+        SetScale(m_SizePertcentage);
+
         if (m_Visited && !m_HasExploded && !m_OffScreen)
         {
             UpdateMaterial();
@@ -103,6 +117,7 @@ public class Planet : MonoBehaviour
     public void Reset()
     {
         transform.position = m_ResetPosition;
+        ResetSize();
         ReEnablePlanet();
         ResetMaterial();
     }
@@ -124,13 +139,6 @@ public class Planet : MonoBehaviour
         ResetMaterial();
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            m_Player = null;
-        }
-    }
 
     private void Explode()
     {
@@ -179,7 +187,15 @@ public class Planet : MonoBehaviour
 
     public void SetScale(float percentage = 1)
     {
+        m_Atmosphere.transform.localScale = m_OgAtmosphereSize * percentage;
+        m_Collider.radius = m_OgColliderSize * percentage;
+    }
 
+    public void ResetSize()
+    {
+        m_Atmosphere.transform.localScale = m_OgAtmosphereSize;
+        m_Collider.radius = m_OgColliderSize;
+        m_SizePertcentage = 1;
     }
 }
 

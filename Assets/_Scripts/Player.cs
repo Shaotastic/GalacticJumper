@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,35 +11,40 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool m_AutoMode;
 
-    public Planet m_SelectedPlanet;
-    public Transform m_PreviousPlanet;
+    private Planet m_SelectedPlanet;
+    private Transform m_PreviousPlanet;
+
     public float speed = 100;
     public float maxSpeed = 1;
     public float fireSpeed;
     public float radius;
     public float gravForce;
+
     public GameObject m_ExplosionParticle, m_SmokeParticle;
-    [SerializeField] ObjectPool m_CircularSmoke;
+
+    [SerializeField] private ObjectPool m_CircularSmoke;
     [SerializeField] private Transform m_CirculatSmokePosition;
+    [SerializeField] private GameObject m_MeshRenderer;
+    [SerializeField] bool playerStart;
+
+    public Vector3 theDir;
+    public float angle = 0;
 
     private Direction m_Direction;
     private static Direction m_TheDirection;
-    Rigidbody rigid;
-    [SerializeField] GameObject m_MeshRenderer;
-    public Vector3 theDir;
-    Vector2 prevVelocity;
-    float m_TimeScore = 0;
-    public float angle = 0;
-    [SerializeField] bool playerStart;
-    bool m_EnableTimeScore;
 
-    PlayerSound m_Sound;
-    ExplosionAnimation m_ExplosionAni;
+    private PlayerSound m_Sound;
+    private ExplosionAnimation m_ExplosionAni;
 
-    //[SerializeField] Planet m_CurrentPlanet;
-    [SerializeField] bool canFire;
+    private bool m_EnableTimeScore;
+    private bool canFire;
 
-    // Use this for initialization
+    [SerializeField] private float m_TimeScore = 100;
+
+    private Rigidbody rigid;
+
+    private Vector2 prevVelocity;
+
     void OnEnable()
     {
         Reset();
@@ -68,55 +72,51 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (GameManager.Instance.m_Pause)
+        if (GameManager.Instance.m_Pause)
+            return;
+        if (GameManager.Instance.m_IsPlaying)
         {
-            case false:
-                if (GameManager.Instance.m_IsPlaying)
-                {
-                    DeathChecks();
+            DeathChecks();
 
-                    if (!IsDead)
-                    {
-                        if (m_EnableTimeScore)
-                        {
-                            if (m_TimeScore < 0)
-                                m_TimeScore = 0;
-
-                            m_TimeScore -= Time.fixedDeltaTime * 3;
-                        }
-                        switch (m_AutoMode)
-                        {
-                            case false:
-                                if (!IsDead && canFire && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
-                                    Fire();
-                                break;
-
-                            case true:
-                                AutoMode();
-                                break;
-                        }
-                    }
-                }
-                break;
-            case true:
-                break;
+            if (!IsDead)
+            {
+                TimeScoreBonus();
+                PlayerInput();
+            }
         }
+    }
 
+    private void PlayerInput()
+    {
+        if(m_AutoMode)
+            AutoMode();
+        else
+        {
+            if (!IsDead && canFire && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
+                Fire();
+        }
+    }
 
+    private void TimeScoreBonus()
+    {
+        if (m_EnableTimeScore)
+        {
+            if (m_TimeScore < 0)
+                m_TimeScore = 0;
+
+            m_TimeScore -= Time.fixedDeltaTime * 3;
+        }
     }
 
     void FixedUpdate()
     {
-        switch (GameManager.Instance.m_Pause)
+        if (GameManager.Instance.m_Pause)
+            return;
+
+
+        if (m_SelectedPlanet != null && !IsDead)
         {
-            case false:
-                if (m_SelectedPlanet != null && !IsDead)
-                {
-                    MovementCentripetal();
-                }
-                break;
-            case true:
-                break;
+            MovementCentripetal();
         }
     }
 
@@ -164,6 +164,9 @@ public class Player : MonoBehaviour
             m_Sound.PlayJumpSound();
 
         canFire = false;
+
+        m_EnableTimeScore = false;
+
         m_CircularSmoke.transform.position = m_CirculatSmokePosition.position;
         m_CircularSmoke.GetPooledObject().SetActive(true);
     }
@@ -193,6 +196,9 @@ public class Player : MonoBehaviour
 
                 canFire = true;
 
+                if(playerStart)
+                    m_EnableTimeScore = true;
+
                 break;
 
             case "Dead":
@@ -209,15 +215,17 @@ public class Player : MonoBehaviour
         {
             m_SelectedPlanet.Visited(this);
             m_Sound.PlayLandSound();
-            GameManager.Instance.AddScore();
+            var finalScore = 100 + (int)m_TimeScore;
+            Debug.Log(finalScore);
+            GameManager.Instance.AddScore(finalScore);
+            if(playerStart)
+                m_TimeScore = 100;
         }
     }
 
     void OnTriggerExit(Collider col)
     {
         enablePlanetAngleGizmo = false;
-        m_EnableTimeScore = false;
-        canFire = false;
     }
 
     public Transform GetObject()

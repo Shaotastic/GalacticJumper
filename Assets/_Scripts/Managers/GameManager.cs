@@ -38,12 +38,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float m_PlanetDecaySpeed = 5;
     private float m_SpeedMultiplier = 1;
     private float m_DecaySpeedMultiplier = 1;
-    private float m_AtmosphereMultiplier = 1;
+    [SerializeField] private float m_AtmosphereMultiplier = 1;
 
     public bool m_IsPlaying = false;
 
     [SerializeField] private float m_CurrentDecaySpeed;
-    [SerializeField] private float m_CurrentAtmosphereSize = 1;
+
+    public float AtmosspherePercent
+    {
+        get => m_AtmosphereMultiplier;
+    }
 
     private void Awake()
     {
@@ -83,18 +87,23 @@ public class GameManager : MonoBehaviour
         {
             case 10:
                 SetMultiplierDecay(0.9f);
+                //m_AtmosphereMultiplier = 0.95f;
                 return;
             case 20:
                 SetMultiplierDecay(0.8f);
+                //m_AtmosphereMultiplier = 0.9f;
                 return;
             case 40:
                 SetMultiplierDecay(0.7f);
+                //m_AtmosphereMultiplier = 0.8f;
                 return;
             case 80:
                 SetMultiplierDecay(0.65f);
+                //m_AtmosphereMultiplier = 0.7f;
                 return;
             case 100:
                 SetMultiplierDecay(0.5f);
+                //m_AtmosphereMultiplier = 0.55f;
                 return;
             default:
                 return;
@@ -115,8 +124,8 @@ public class GameManager : MonoBehaviour
 
     private void SaveResults(double score)
     {
-        SetUserHighScore(score);
-        App24Leaderboard.SaveScoreToServer(score);
+        //SetUserHighScore(score);
+        //App24Leaderboard.SaveScoreToServer(score);
     }
 
     public void Reset()
@@ -133,17 +142,17 @@ public class GameManager : MonoBehaviour
         //player.Reset();
     }
 
-    public void AddScore()
+    public void AddScore(int score = 1)
     {
         m_PlanetCount++;
 
         switch (m_ExtraLife)
         {
             case false:
-                m_Score++;
+                m_Score+=score;
                 break;
             case true:
-                m_Score += m_PlanetCount % 2;
+                m_Score += score / 2; // m_PlanetCount % 2;
                 break;
         }
         ScoreTracker();
